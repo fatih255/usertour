@@ -21,9 +21,9 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=rZ9AoXh0jK0Pz9sJpitg69YSyLI9S
+      - POSTGRES_DB=usertour
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
