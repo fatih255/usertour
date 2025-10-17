@@ -1,20 +1,35 @@
 #!/bin/sh
+set -e
 
-# Replace environment variables in config.js
+echo "⏳ Waiting for Redis and Postgres to be ready..."
+
+# Wait for Redis
+until nc -z redis 6379; do
+  echo "❌ Redis not ready, retrying in 2s..."
+  sleep 2
+done
+echo "✅ Redis is up!"
+
+# Wait for Postgres
+until nc -z postgres 5432; do
+  echo "❌ Postgres not ready, retrying in 2s..."
+  sleep 2
+done
+echo "✅ Postgres is up!"
+
+# Replace env vars in config
 envsubst < /usr/share/nginx/html/web/config.js > /usr/share/nginx/html/web/config.js.tmp
 mv /usr/share/nginx/html/web/config.js.tmp /usr/share/nginx/html/web/config.js
 
 # Replace NEST_SERVER_PORT in nginx config
 sed -i "s/\${NEST_SERVER_PORT}/$NEST_SERVER_PORT/g" /etc/nginx/conf.d/default.conf
 
-# Start nginx
-nginx
+# Run database migrations and seed
+pnpm prisma migrate deploy || true
+pnpm prisma db seed || true
 
-# Run database migrations
-pnpm prisma migrate deploy
+# Start Node.js backend in background
+node dist/main &
 
-# Seed database
-pnpm prisma db seed
-
-# Start Node.js server
-node dist/main 
+# Start nginx in foreground (PID 1)
+exec nginx -g 'daemon off;'
