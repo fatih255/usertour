@@ -4,14 +4,14 @@ set -e
 echo "⏳ Waiting for Redis and Postgres to be ready..."
 
 # Wait for Redis
-until nc -z redis 6379; do
+until nc -z 127.0.0.1 6379; do
   echo "❌ Redis not ready, retrying in 2s..."
   sleep 2
 done
 echo "✅ Redis is up!"
 
 # Wait for Postgres
-until nc -z postgres 5432; do
+until nc -z 127.0.0.1 5432; do
   echo "❌ Postgres not ready, retrying in 2s..."
   sleep 2
 done
