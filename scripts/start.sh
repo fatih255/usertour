@@ -4,7 +4,7 @@ set -e
 echo "⏳ Waiting for Redis and Postgres to be ready..."
 
 # Wait for Redis
-until nc -z onboardinglivechataicom-frontend-bnrn2q-redis-1 6379; do
+until nc -z redis 6379; do
   echo "❌ Redis not ready, retrying in 2s..."
   sleep 2
 done
