@@ -289,7 +289,7 @@ async function main() {
     data: {
       email: 'fatih@popupsmart.com',
       name: 'Fatih',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      password: '$2a$10$nxYO6Mq6SCnsHj2Ru5t6Q.BjMmC8WZpgRN4mdIBmfGY1V7Vq7yMDe', // RbBNdaM9110WTB
     },
   });
 
