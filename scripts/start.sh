@@ -7,7 +7,7 @@ mv /usr/share/nginx/html/web/config.js.tmp /usr/share/nginx/html/web/config.js
 # Replace NEST_SERVER_PORT in nginx config
 sed -i "s/\${NEST_SERVER_PORT}/$NEST_SERVER_PORT/g" /etc/nginx/conf.d/default.conf
 
-# Start nginx (because dokploy already started it default in background)
+# Start nginx
 # nginx
 
 # Run database migrations
