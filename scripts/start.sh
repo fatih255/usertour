@@ -8,7 +8,7 @@ mv /usr/share/nginx/html/web/config.js.tmp /usr/share/nginx/html/web/config.js
 sed -i "s/\${NEST_SERVER_PORT}/$NEST_SERVER_PORT/g" /etc/nginx/conf.d/default.conf
 
 # Start nginx
-# nginx
+nginx
 
 # Run database migrations
 pnpm prisma migrate deploy
