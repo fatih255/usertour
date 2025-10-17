@@ -287,8 +287,8 @@ async function main() {
 
   const user1 = await prisma.user.create({
     data: {
-      email: 'lisa@simpson.com',
-      name: 'Lisa',
+      email: 'fatih@popupsmart.com',
+      name: 'Fatih',
       password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
     },
   });
